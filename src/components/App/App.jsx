@@ -1,12 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import {Container} from './App.styled.js'
+import { NavLink, Route} from 'react-router-dom';
+import { Container, Header, LinkList } from './App.styled.js';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 function App() {
     return (
       <Container>
-
-        </Container>
+        <Header>
+          <Route>
+          <LinkList>
+            <NavLink to='/home'>Home</NavLink>
+            <NavLink to='/movies'>Movies</NavLink>
+            </LinkList>
+           </Route>
+        </Header>
+            <MoviesList/>
+      </Container>
     )
 }
 
