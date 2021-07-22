@@ -1,6 +1,6 @@
 import AppBar from 'components/Appbar/AppBar';
 import Container from 'components/Container/Container';
-import HomePage from 'pages/HomePage';
+import HomePage from 'pages/HomePage/HomePage';
 import NotFoundView from 'pages/NotFoundPage';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
