@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_KEY } from 'constants/index';
-console.log(API_KEY);
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
