@@ -19,9 +19,9 @@ export default function TrendingMovies() {
   return (
     <>
     {movies && <ListMovies>
-        {movies.map(({id,original_title})=> (
+        {movies.map(({id,title})=> (
           <ItemList key={id}>
-            <Link to={`${url}movies/${id}`} >{original_title}</Link>
+            <Link to={`${url}movies/${id}`} >{title}</Link>
           </ItemList>
         ))}
     </ListMovies>}

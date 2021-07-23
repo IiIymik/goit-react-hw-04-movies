@@ -9,10 +9,10 @@ export const Title = css.h1`
   font-weight: 500;
   text-align: center;
   background-image: repeating-linear-gradient(
-    -45deg,
-    #606dbc,
-    #606dbc 15px,
-    #465298 15px,
-    #465298 30px
+      45deg,
+    #01b4e4,
+    #01b4e4 15px,
+    #0d253f 15px,
+    #0d253f 30px
   );
   `;

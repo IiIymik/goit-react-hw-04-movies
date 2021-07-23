@@ -9,7 +9,7 @@ export const Nav = css.nav`
   color: #2a363b;
   font-size: 18px;
   &:hover{
-  color: #2196f3;
+    color: #2196f3;
   }
 }
 `;
