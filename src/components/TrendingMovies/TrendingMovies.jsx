@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link,  } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/api';
-import PageTitle from "components/PageTitle/PageTitle";
-import { ListMovies, ItemList } from './HomePage.styled.js';
+import { ListMovies, ItemList } from './TrendingMovies.styled.js';
 
-export default function HomePage() {
+export default function TrendingMovies() {
+  const {url} = useRouteMatch();
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -15,17 +15,16 @@ export default function HomePage() {
     });
   }, [movies]);
 
+
   return (
     <>
-      <PageTitle text="Trending today" />
-      {movies && <ListMovies>
+    {movies && <ListMovies>
         {movies.map(({id,original_title})=> (
           <ItemList key={id}>
-            <Link to={`/${id}`} >{original_title}</Link>
+            <Link to={`${url}movies/${id}`} >{original_title}</Link>
           </ItemList>
         ))}
-      </ListMovies>}
+    </ListMovies>}
     </>
   )
 }
-
