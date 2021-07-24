@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams,useRouteMatch } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import PageTitle from 'components/PageTitle/PageTitle';
+import Cast from 'components/Cast/Cast';
 import { fetchMovie } from 'services/api';
 import {
   CardContainer,
@@ -38,7 +39,7 @@ export default function MovieDetailsPage() {
 
       <ImgMovie src={`https://image.tmdb.org/t/p/w500${movie.poster_path}` } width='300px' height='200px'/>
         <DescContainer>
-        <PageTitle text={`${movie.title}`} />
+        <PageTitle text={`${movie.title} ${movie.release_date}`} />
       <ScoreMovie>User score: {movie.vote_average}</ScoreMovie>
       <Overview>Overview</Overview>
       <TextOverview>{movie.overview}</TextOverview>
@@ -58,7 +59,16 @@ export default function MovieDetailsPage() {
           <br/>
           <Link to={`${url}/reviews`}>Reviews</Link>
         </ListInfo>
+        <Route path="/movies/:movieId/cast" >
+          <Cast movieId={movieId}/>
+          </Route>
+
+          <Route path="/movies/:movieId/reviews" >
+            <h2>Reviews</h2>
+          </Route>
       </ContainerInfo>
+
+
     </>
   )
 }
