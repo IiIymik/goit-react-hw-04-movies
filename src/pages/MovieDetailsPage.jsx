@@ -30,7 +30,7 @@ export default function MovieDetailsPage() {
   const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-console.log(location);
+  console.log(location);
   useEffect(() => {
   fetchMovie(movieId).then(setMovie);
   }, [movieId])
@@ -38,7 +38,7 @@ console.log(location);
   const handleGoBack = () => {history.push(location?.state?.from ?? '/')};
 
 
-const createYear =  (movie) => {
+const createYear = (movie) => {
   return movie.release_date ? movie.release_date.slice(0, 4) : '';
 };
 

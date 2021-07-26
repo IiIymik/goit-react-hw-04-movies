@@ -3,6 +3,7 @@ import { fetchCast } from 'services/api';
 import {Container, List, Item, Image, Name, Text} from './Cast.styled.js';
 
 // const NotFoundImg = '/kqjL17yufvn9OVLyXYpvtyrFfak.jpg';
+
 export default function Cast({ movieId }) {
   const [cast, setCast] = useState(null);
 
