@@ -16,7 +16,8 @@ import {
   DescContainer,
   TextInfo,
   ListInfo,
-  ContainerInfo
+  ContainerInfo,
+  ItemInfo,
 } from './MovieDetailsPage.styled';
 
 
@@ -55,9 +56,8 @@ export default function MovieDetailsPage() {
       <ContainerInfo>
         <TextInfo>Additional Information</TextInfo>
         <ListInfo>
-          <Link to={`${url}/cast`}>Cast</Link>
-          <br/>
-          <Link to={`${url}/reviews`}>Reviews</Link>
+          <ItemInfo><Link to={`${url}/cast`}>Cast</Link></ItemInfo>
+          <ItemInfo><Link to={`${url}/reviews`}>Reviews</Link></ItemInfo>
         </ListInfo>
         <Route path="/movies/:movieId/cast" >
           <Cast movieId={movieId}/>

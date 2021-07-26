@@ -28,6 +28,11 @@ export const Item = css.li``;
 
 export const ContainerInfo = css.div``;
 
-export const TextInfo = css.p``;
+export const TextInfo = css.h3``;
 
-export const ListInfo = css.ul``;
+export const ListInfo = css.ul`
+border-bottom: 1px solid #2a363b;
+padding-bottom: 30px;
+`;
+
+export const ItemInfo = css.li``;
