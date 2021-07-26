@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react';
 import { fetchCast } from 'services/api';
 import {Container, List, Item, Image, Name, Text} from './Cast.styled.js';
 

@@ -6,6 +6,7 @@ export const List = css.ul`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 grid-template-rows: auto;
+gap: 20px;
 `;
 
 export const Item = css.li``;

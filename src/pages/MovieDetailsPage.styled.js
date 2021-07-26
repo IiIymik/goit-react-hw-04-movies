@@ -36,3 +36,7 @@ padding-bottom: 30px;
 `;
 
 export const ItemInfo = css.li``;
+
+export const Btn = css.button`
+margin-bottom: 10px;
+`;

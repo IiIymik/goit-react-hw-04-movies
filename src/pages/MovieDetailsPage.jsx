@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams,useRouteMatch } from 'react-router';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useHistory, useLocation } from 'react-router-dom';
 import PageTitle from 'components/PageTitle/PageTitle';
 import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
 import { fetchMovie } from 'services/api';
 import {
   CardContainer,
@@ -18,29 +19,37 @@ import {
   ListInfo,
   ContainerInfo,
   ItemInfo,
+  Btn
 } from './MovieDetailsPage.styled';
 
 
 
 export default function MovieDetailsPage() {
+  const history = useHistory();
+  const location = useLocation();
   const { url } = useRouteMatch();
-  console.log(url);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
+console.log(location);
   useEffect(() => {
   fetchMovie(movieId).then(setMovie);
-  },[movieId])
+  }, [movieId])
+
+  const handleGoBack = () => {history.push(location?.state?.from ?? '/')};
+
+
+const createYear =  (movie) => {
+  return movie.release_date ? movie.release_date.slice(0, 4) : '';
+};
 
   return (
     <>
-
-      {movie &&
+      {movie && <>
+        <Btn type='button' onClick={handleGoBack}>Go back</Btn>
         <CardContainer>
-
       <ImgMovie src={`https://image.tmdb.org/t/p/w500${movie.poster_path}` } width='300px' height='200px'/>
         <DescContainer>
-        <PageTitle text={`${movie.title} ${movie.release_date}`} />
+        <PageTitle text={`${movie.title} ${createYear(movie)}`} />
       <ScoreMovie>User score: {movie.vote_average}</ScoreMovie>
       <Overview>Overview</Overview>
       <TextOverview>{movie.overview}</TextOverview>
@@ -51,7 +60,8 @@ export default function MovieDetailsPage() {
         ))}
       </ListGenres>
       </DescContainer>
-      </CardContainer>
+        </CardContainer>
+        </>
       }
       <ContainerInfo>
         <TextInfo>Additional Information</TextInfo>
@@ -64,7 +74,7 @@ export default function MovieDetailsPage() {
           </Route>
 
           <Route path="/movies/:movieId/reviews" >
-            <h2>Reviews</h2>
+          <Reviews movieId={movieId}/>
           </Route>
       </ContainerInfo>
 
