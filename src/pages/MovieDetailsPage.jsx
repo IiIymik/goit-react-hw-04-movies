@@ -27,18 +27,24 @@ import {
 export default function MovieDetailsPage() {
   const history = useHistory();
   const location = useLocation();
-  const { url } = useRouteMatch();
+  const match = useRouteMatch("/")
+  console.log("🚀 ~ file: MovieDetailsPage.jsx ~ line 31 ~ MovieDetailsPage ~ match", match)
+
+  const { url} = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  console.log(location);
+   console.log('url from MovieDetailsPage', url);
+  // const locationForCat = history.location.state ?? '/';
   useEffect(() => {
   fetchMovie(movieId).then(setMovie);
   }, [movieId])
 
-  const handleGoBack = () => {history.push(location?.state?.from ?? '/')};
+  const handleGoBack = () => {
+    history.push(location?.state?.from ?? '/')
+  };
 
 
-const createYear = (movie) => {
+  const createYear = (movie) => {
   return movie.release_date ? movie.release_date.slice(0, 4) : '';
 };
 
@@ -66,8 +72,14 @@ const createYear = (movie) => {
       <ContainerInfo>
         <TextInfo>Additional Information</TextInfo>
         <ListInfo>
-          <ItemInfo><Link to={`${url}/cast`}>Cast</Link></ItemInfo>
-          <ItemInfo><Link to={`${url}/reviews`}>Reviews</Link></ItemInfo>
+          <ItemInfo><Link to={{
+            pathname: `${url}/cast`,
+
+          }}>Cast</Link></ItemInfo>
+          <ItemInfo><Link to={{
+            pathname: `${url}/reviews`,
+            state: { from: location},
+          }}>Reviews</Link></ItemInfo>
         </ListInfo>
         <Route path="/movies/:movieId/cast" >
           <Cast movieId={movieId}/>

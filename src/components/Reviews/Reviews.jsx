@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import {useHistory, useLocation } from 'react-router-dom'
+
 import { fetchReviews } from 'services/api';
 import { Container,List,Item,Title,Text } from './Reviews.styled.js';
 
-export default function Reviews({movieId}) {
+export default function Reviews({ movieId }) {
+  const history = useHistory();
+  const location = useLocation();
+  // console.log("🚀 ~ file: Reviews.jsx ~ line 10 ~ Reviews ~ location", location)
+  console.log("🚀 ~ file: Reviews.jsx ~ line 9 ~ Reviews ~ history", history.location.state)
   const [reviews, setReviews] = useState(null);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { ListMovies, ItemList } from './MoviesList.styled.js';
 export default function MoviesListTrend({ movies }) {
   const location = useLocation();
   const { url } = useRouteMatch();
+  // console.log('url from MoviesListTrend', url);
 
   return (
   <ListMovies>

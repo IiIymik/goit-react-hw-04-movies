@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { useHistory, useLocation } from 'react-router-dom';
 import { fetchCast } from 'services/api';
 import {Container, List, Item, Image, Name, Text} from './Cast.styled.js';
 
