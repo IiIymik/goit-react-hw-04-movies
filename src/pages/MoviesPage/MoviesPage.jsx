@@ -11,8 +11,6 @@ export default function MoviesPage() {
   const [movies, setMovie] = useState(null);
   const [searched, setSearched] = useState(null)
 
-
-
     const handleSearch = e => {
       e.preventDefault();
       setSearched(e.target.elements.searchMovie.value);
@@ -25,8 +23,7 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!searched) return;
-
-    fetchSearchMovie(searched).then(({ results }) => setMovie(results));
+fetchSearchMovie(searched).then(({ results }) => setMovie(results));
   }, [searched])
 
   useEffect(() => {

@@ -27,14 +27,10 @@ import {
 export default function MovieDetailsPage() {
   const history = useHistory();
   const location = useLocation();
-  const match = useRouteMatch("/")
-  console.log("🚀 ~ file: MovieDetailsPage.jsx ~ line 31 ~ MovieDetailsPage ~ match", match)
-
-  const { url} = useRouteMatch();
+  const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-   console.log('url from MovieDetailsPage', url);
-  // const locationForCat = history.location.state ?? '/';
+
   useEffect(() => {
   fetchMovie(movieId).then(setMovie);
   }, [movieId])
@@ -42,7 +38,6 @@ export default function MovieDetailsPage() {
   const handleGoBack = () => {
     history.push(location?.state?.from ?? '/')
   };
-
 
   const createYear = (movie) => {
   return movie.release_date ? movie.release_date.slice(0, 4) : '';
@@ -74,11 +69,11 @@ export default function MovieDetailsPage() {
         <ListInfo>
           <ItemInfo><Link to={{
             pathname: `${url}/cast`,
-
+            state: {from: location?.state?.from}
           }}>Cast</Link></ItemInfo>
           <ItemInfo><Link to={{
             pathname: `${url}/reviews`,
-            state: { from: location},
+            state: {from: location?.state?.from},
           }}>Reviews</Link></ItemInfo>
         </ListInfo>
         <Route path="/movies/:movieId/cast" >

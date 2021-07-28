@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory, useLocation } from 'react-router-dom';
 import { fetchCast } from 'services/api';
-import {Container, List, Item, Image, Name, Text} from './Cast.styled.js';
+import { Container, List, Item, Image, Name, Text } from './Cast.styled.js';
 
-// const NotFoundImg = '/kqjL17yufvn9OVLyXYpvtyrFfak.jpg';
+const notFound = '/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg'
 
 export default function Cast({ movieId }) {
   const [cast, setCast] = useState(null);
@@ -16,7 +15,7 @@ export default function Cast({ movieId }) {
     <List>
     {cast && cast.map((el) => (
       <Item key={el.id}>
-        <Image src={`https://image.tmdb.org/t/p/w200${el.profile_path}`} alt={el.name} />
+        <Image src={`https://image.tmdb.org/t/p/w200${el.profile_path ?? notFound}`} alt={el.name} />
       <Name>{el.name}</Name>
       <Text>Character: {el.character}</Text>
       </Item>
