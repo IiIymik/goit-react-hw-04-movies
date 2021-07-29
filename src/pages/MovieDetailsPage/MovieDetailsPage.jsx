@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams,useRouteMatch } from 'react-router';
 import { Link, Route, useHistory, useLocation } from 'react-router-dom';
 import PageTitle from 'components/PageTitle/PageTitle';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+// import Cast from 'components/Cast/Cast';
+// import Reviews from 'components/Reviews/Reviews';
 import { fetchMovie } from 'services/api';
 import {
   CardContainer,
@@ -22,6 +22,8 @@ import {
   Btn
 } from './MovieDetailsPage.styled';
 
+const Cast = lazy(() => import('components/Cast/Cast' /* webpackChunkName: 'Cast' */));
+const Reviews = lazy(() => import('components/Reviews/Reviews' /* webpackChunkName: 'Reviews' */));
 
 
 export default function MovieDetailsPage() {
@@ -67,22 +69,28 @@ export default function MovieDetailsPage() {
       <ContainerInfo>
         <TextInfo>Additional Information</TextInfo>
         <ListInfo>
-          <ItemInfo><Link to={{
+          <ItemInfo>
+            <Link to={{
             pathname: `${url}/cast`,
             state: {from: location?.state?.from}
-          }}>Cast</Link></ItemInfo>
-          <ItemInfo><Link to={{
+            }}>Cast</Link>
+          </ItemInfo>
+          <ItemInfo>
+            <Link to={{
             pathname: `${url}/reviews`,
             state: {from: location?.state?.from},
-          }}>Reviews</Link></ItemInfo>
+            }}>Reviews</Link>
+          </ItemInfo>
         </ListInfo>
-        <Route path="/movies/:movieId/cast" >
+        <Suspense>
+          <Route path="/movies/:movieId/cast" >
           <Cast movieId={movieId}/>
           </Route>
 
           <Route path="/movies/:movieId/reviews" >
           <Reviews movieId={movieId}/>
           </Route>
+        </Suspense>
       </ContainerInfo>
 
 
