@@ -82,7 +82,7 @@ export default function MovieDetailsPage() {
             }}>Reviews</Link>
           </ItemInfo>
         </ListInfo>
-        <Suspense>
+        <Suspense fallback={<h1>Load...</h1>}>
           <Route path="/movies/:movieId/cast" >
           <Cast movieId={movieId}/>
           </Route>
